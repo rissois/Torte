@@ -1,0 +1,48 @@
+{
+  "name": "TorteRestaurants",
+  "displayName": "TorteRestaurants",
+  "expo": {
+    "name": "TorteRestaurants",
+    "description": "Torte for restaurants",
+    "privacy": "unlisted",
+    "slug": "TorteR",
+    "version": "1.0.15",
+    "assetBundlePatterns": [
+      "assets/*"
+    ],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {
+      "bundleIdentifier": "com.Torte.TorteRestaurants",
+      "buildNumber": "1.0.15",
+      "supportsTablet": true,
+      "userInterfaceStyle": "dark",
+      "isTabletOnly": true
+    },
+    "android": {
+      "package": "com.torte.pay",
+      "versionCode": 9,
+      "icon": "./assets/androidLogo.png",
+      "adaptiveIcon": {
+        "foregroundImage": "assets/androidLogoForeground.png",
+        "backgroundImage": "assets/androidLogoBackground.png"
+      },
+      "permissions": [],
+      "userInterfaceStyle": "dark"
+    },
+    "icon": "./assets/coloredLogo.png",
+    "backgroundColor": "#19202D",
+    "scheme": "torter",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000000"
+    },
+    "orientation": "portrait"
+  }
+}

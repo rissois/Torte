@@ -1,0 +1,108 @@
+Topic:
+Analytics
+
+Question:
+Everything
+
+Tags:
+analytics_helper
+
+Concerns:
+Variants
+
+Thought process:
+WHAT INFORMATION DO YOU ACTUALLY NEED TO ACCESS
+
+Decision:
+- Make documents unaffected by changes in the future
+- Keep the the rules of NoSQL
+    !No maps keyed by ids
+- Query
+    - Limit to 5, allow for extending view
+    - Query by timestamps.created (day_id may be helpful in some cases)
+- COUPONS and SERVER-ADDED
+- Top-level day essentials:
+    - id (day_id)
+    - restaurant_id
+    - year
+    - month
+    - bill_ids
+    - usage: {tables, diners, devices: {joined, ordered, paid}}
+    - ordered: {quantity, quantity_asap, total, tax, subtotal, voided}
+    - paid: {total, tax, subtotal, tips, finals, pre_tax_discount, post_tax_discount} // THIS IS CUMULATIVE
+    - voided: {subtotal, tax, quantity} // quantity per item
+    - refunded: {subtotal, tax, quantity}
+    - discounted: {total, quantity}
+    - breakdown
+        - payments: {subtotal, tax, tips, quantity}
+        - charges: {subtotal, tax, tips, quantity}
+        - outside_payments: {total, tips, quantity}
+        - discounts_by_sources: {torte: {quantity, total}, restaurant: {quantity, total}}
+        - discounts_by_tax_appliance: {pre_tax: {quantity, total}, post_tax: {quantity, total}}
+        - discounts_by_target: {bill: {quantity, total}, bill_id: {quantity, total}}
+        - discounts_by_type: {promotion: {quantity, total}, loyalty: {quantity, total}}
+    - feedback: {food, food_responses, service, service_responses, overall, overall_responses, comments}
+- DayTaxes:
+    - id 
+    - restaurant_id
+    - day_id
+    - name
+    - percent 
+    - ordered: {tax, quantity}
+    - timestamps: {created: day_created} 
+- DayItems:
+    - id 
+    - restaurant_id
+    - day_id
+    - name
+    - ordered: {quantity, subtotal, tax}
+    - custom: {quantity,} // to difficult to save, just query
+    - comments: {quantity} // may as well just query with custom
+    - is_panel_click: {quantity}
+    - filters: {quantity, ...filterKeys}
+    - upsells: {quantity}
+    - modifiers: {quantity, mods}
+    - sizes: {[name+price]: quantity}
+    - timestamps: {created: day_created} 
+
+    - DayItemVariants (variant_id || 'root')
+        - item_id 
+        - identical to above
+        - REPEAT FOR ALL OF BELOW AS WELL
+
+    - DayItemUpsells (item_id || option_id)
+        - id 
+        - restaurant_id
+        - day_id
+        - item_id
+        - name 
+        - price
+        - quantity
+        
+        - DayItemUpsellVariants (variant_id || 'root')
+
+    - DayItemModifiers (modifier_id)
+        - id 
+        - restaurant_id
+        - day_id
+        - item_id
+        - name 
+        - price
+        - quantity
+        - mods: (NOTE: number)
+
+        - DayItemModifierMods (item_id || option_id)
+            - id 
+            - restaurant_id
+            - day_id
+            - item_id
+            - modifier_id
+            - name 
+            - price
+            - quantity
+            
+            - DayItemModifierModVariants (variant_id || 'root')
+
+    - DayItemCustoms
+    - DayComments
+    - ... day feedback? 

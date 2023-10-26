@@ -1,0 +1,1 @@
+export const demoDate = new Date('2020/12/14 17:42:46') //Monday at 5:42PM

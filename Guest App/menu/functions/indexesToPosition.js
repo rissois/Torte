@@ -1,0 +1,1 @@
+export const indexesToPosition = (...indexes) => indexes.map(index => index.toString().padStart(2, '0')).join('')

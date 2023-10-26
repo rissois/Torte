@@ -1,0 +1,1 @@
+export const employeeRoles = ['owner', 'manager', 'server']

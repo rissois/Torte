@@ -1,0 +1,59 @@
+{
+  "name": "Torte",
+  "displayName": "Torte",
+  "expo": {
+    "name": "Torte",
+    "description": "Split the bill",
+    "slug": "T",
+    "privacy": "unlisted",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.Torte.TortePay"
+    },
+    "web": {
+      "name": "Torte",
+      "shortName": "Torte",
+      "backgroundColor": "#19202D",
+      "themeColor": "#000000"
+    },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
+    },
+    "android": {
+      "package": "com.torte.pay",
+      "versionCode": 31,
+      "icon": "./assets/images/AndroidLogo.png",
+      "adaptiveIcon": {
+        "foregroundImage": "assets/images/AndroidLogoForeground.png",
+        "backgroundImage": "assets/images/AndroidLogoBackground.png"
+      }
+    },
+    "version": "6.0.31",
+    "orientation": "portrait",
+    "icon": "./assets/images/coloredLogo.png",
+    "backgroundColor": "#19202D",
+    "primaryColor": "#5D57FF",
+    "updates": {
+      "fallbackToCacheTimeout": 7000
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "scheme": "torte",
+    "entryPoint": "node_modules/expo/AppEntry.js",
+    "plugins": [
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.torte.torte",
+          "enableGooglePay": true
+        }
+      ],
+      "expo-system-ui"
+    ]
+  }
+}
